@@ -175,6 +175,7 @@ def pretrain(
         PosixPath('/path/to/log_dir')
     """
     model = _load_model_from_path(model)
+    breakpoint()
     _validate_config(model, data, trainer, log=log, resume=resume, optim=optim)
 
     return train(

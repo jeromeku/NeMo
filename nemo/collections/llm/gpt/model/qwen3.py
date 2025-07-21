@@ -141,6 +141,19 @@ class Qwen3Config32B(Qwen3Config):
 
 
 @dataclass
+class Qwen3ConfigMoeDebug(Qwen3MoEConfig):
+    """
+    """
+
+    num_layers: int = 1
+    hidden_size: int = 2048
+    num_attention_heads: int = 32
+    num_query_groups: int = 4
+    ffn_hidden_size: int = 6144
+    moe_ffn_hidden_size: int = 768
+
+
+@dataclass
 class Qwen3Config30B_A3B(Qwen3MoEConfig):
     """
     Config for Qwen 3 30B-A3B: https://huggingface.co/Qwen/Qwen3-30B-A3B

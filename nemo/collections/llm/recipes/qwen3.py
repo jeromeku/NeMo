@@ -31,6 +31,7 @@ from nemo.collections.llm.gpt.model.qwen3 import (
     Qwen3Config235B_A22B,
     Qwen3Config600M,
     Qwen3Model,
+    Qwen3ConfigMoeDebug
 )
 from nemo.collections.llm.recipes.precision.mixed_precision import bf16_mixed, fp16_mixed
 
@@ -63,7 +64,8 @@ def qwen3_model(version: str) -> run.Config[pl.LightningModule]:
         config = run.Config(Qwen3Config30B_A3B)
     elif version == "qwen3_235b_a22b":
         config = run.Config(Qwen3Config235B_A22B)
-
+    elif version == "qwen3moe_debug":
+        config = run.Config(Qwen3ConfigMoeDebug)
     assert config is not None, f"Invalid version: {version}"
     return run.Config(Qwen3Model, config=config)
 

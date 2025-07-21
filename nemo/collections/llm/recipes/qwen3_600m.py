@@ -224,3 +224,15 @@ def finetune_recipe(
     else:
         raise ValueError(f"Unrecognized peft scheme: {peft_scheme}")
     return recipe
+
+if __name__ == "__main__":
+    import nemo
+    from pathlib import Path
+    from viztracer import VizTracer
+    NEMO_ROOT = Path(nemo.__file__).parent.resolve().as_posix()
+    tracer = VizTracer(include_files=[NEMO_ROOT], ignore_c_function=True, ignore_frozen=True, log_func_args=True, log_func_retval=True)
+    tracer.output_file = "nemo.model.json"
+    
+    with tracer:
+        m = model()
+        print(m)
